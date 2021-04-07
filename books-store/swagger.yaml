@@ -1,0 +1,78 @@
+openapi: 3.0.0
+info:
+  description: This is a simple books store application
+  version: 1.0.0-oas3
+  title: Swagger Bookstore
+servers:
+  - url: 'https://2p3v4rqui5.execute-api.eu-west-1.amazonaws.com/dev'
+tags:
+  - name: Products
+paths:
+  /products:
+    get:
+      summary: Get All Books
+      operationId: getBooks
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                xml:
+                  name: photoUrl
+                  wrapped: true
+                items:
+                  $ref: '#/components/schemas/Book'
+        '500':
+          description: Something went wrong
+  '/products/{productId}':
+    get:
+      summary: Get book by id
+      description: ''
+      operationId: getBookById
+      parameters:
+        - name: productId
+          in: path
+          description: ID of Book
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        '404':
+          description: Book Not Found
+        '500':
+          description: Something went wrong
+components:
+  schemas:
+    Book:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        availableOnStock:
+          type: number
+        price:
+          type: number
+        thumbnailUrl:
+          type: string
+        description:
+          type: string
+        authors:
+          type: array
+          items:
+            type: string
+        categories:
+          type: array
+          items:
+            type: string
+      xml:
+        name: Book
