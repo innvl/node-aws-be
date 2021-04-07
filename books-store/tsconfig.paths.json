@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@models/*": ["src/models/*"],
+      "@mocks/*": ["src/mock-data/*"],
+      "@functions/*": ["src/functions/*"],
+      "@libs/*": ["src/libs/*"]
+    }
+  }
+}
